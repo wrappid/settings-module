@@ -1,0 +1,14 @@
+export const GET_SETTINGS_META_API = "/settingMeta";
+export const GET_SETTINGS_MENU = "/masterData?name=settings&level=5&_status=active";
+export const CHANGE_PASSWORD_API = "/changePassword";
+export const CREATE_CONTACTS_API = "/addContact";
+export const GET_EMAILS_API = "/data/PersonContacts?type=email";
+export const GET_PHONES_API = "/data/PersonContacts?type=phone";
+export const DELETE_CONTACTS_API = "/contact/:id/delete";
+export const GET_WAP_API = "/data/PersonContacts?type=wap";
+export const CHANGE_PRIMARY_EMAIL_API = "/changePrimaryContact?type=email";
+export const CHANGE_PRIMARY_PHONE_API = "/changePrimaryContact?type=phone";
+export const DELETE_USER_ACCOUNT_API = "/deleteUserAccount";
+export const GET_USER_SETTINGS = "/userSettings";
+export const UPDATE_USER_SETTINGS = "/userSettings";
+export const LOGOUT_API = "/logout";
