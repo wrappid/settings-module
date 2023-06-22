@@ -9,8 +9,6 @@ settingsRouter.post("/settingMeta",  settingsController.postSettingMeta);
 settingsRouter.put("/settingMeta/:id",  settingsController.putSettingMeta);
 settingsRouter.post("/userSettings",  settingsController.postUserSettings);
 settingsRouter.get("/userSettings",  settingsController.getUserSettings);
-settingsRouter.post("/addContact",  settingsController.postAddContact);
-settingsRouter.post("/contact/:id/delete",  settingsController.updateAddContact);
 settingsRouter.post("/deleteUserAccount",  settingsController.deleteUserAccount);
 settingsRouter.post("/logout",  settingsController.logout);
 
