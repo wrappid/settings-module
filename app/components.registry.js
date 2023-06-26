@@ -7,25 +7,13 @@ import SettingsPassword from "./components/SettingsPassword";
 import SettingsProfile from "./components/SettingsProfile";
 
 export const ComponentRegistry = {
-    Settings: {
-        comp: Settings,
-    },
-    SettingsAccount: {
-        comp: SettingsAccount,
-    },
-    SettingsAppearance: {
-        comp: SettingsAppearance,
-    },
-    SettingsContact: {
-        comp: SettingsContact,
-    },
-    // SettingsNotification: {
-    //     comp: SettingsNotification,
-    // },
-    SettingsPassword: {
-        comp: SettingsPassword,
-    },
-    SettingsProfile: {
-        comp: SettingsProfile,
-    },
-}
+  Settings          : { comp: Settings },
+  SettingsAccount   : { comp: SettingsAccount },
+  SettingsAppearance: { comp: SettingsAppearance },
+  SettingsContact   : { comp: SettingsContact },
+  // SettingsNotification: {
+  //     comp: SettingsNotification,
+  // },
+  SettingsPassword  : { comp: SettingsPassword },
+  SettingsProfile   : { comp: SettingsProfile },
+};

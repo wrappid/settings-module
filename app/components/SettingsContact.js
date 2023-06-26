@@ -2,7 +2,8 @@ import { CoreForm, FORM_IDS, FORM_VIEW_MODE, CoreSection } from "@wrappid/core";
 import { useSelector } from "react-redux";
 
 export default function SettingsContact() {
-  const personId =  useSelector(state => state?.profile?.basic?.id)
+  const personId =  useSelector(state => state?.profile?.basic?.id);
+
   return (
     <>
       <CoreSection heading="Emails">

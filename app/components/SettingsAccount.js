@@ -1,18 +1,6 @@
 import React from "react";
 
-import { useDispatch, useSelector } from "react-redux";
-// import swal from "sweetalert";
-
-import { DELETE_USER_ACCOUNT_API, LOGOUT_API } from "../constants/api";
-// import { LOGOUT_ERROR, LOGOUT_SUCCESS } from "../../store/types/authTypes";
 import {
-  DELETE_USER_ACCOUNT_ERROR,
-  DELETE_USER_ACCOUNT_SUCCESS,
-} from "../types/settingsTypes";
-
-import {
-  HTTP,
-  apiRequestAction,
   CoreTypographyBody1,
   CoreTypographyCaption,
   CoreForm,
@@ -21,8 +9,12 @@ import {
   CoreContainedButton,
   CoreBox,
   CoreSection,
-  CoreClasses,
+  CoreClasses
 } from "@wrappid/core";
+import { useDispatch, useSelector } from "react-redux";
+// import swal from "sweetalert";
+
+// import { LOGOUT_ERROR, LOGOUT_SUCCESS } from "../../store/types/authTypes";
 
 export default function SettingsAccount() {
   const dispatch = useDispatch();
@@ -80,7 +72,7 @@ export default function SettingsAccount() {
           mode={FORM_VIEW_MODE}
           allowDelete={false}
           initData={{
-            data: contactInfo.phone,
+            data    : contactInfo.phone,
             verified: contactInfo.phoneVerified,
           }}
         />
@@ -92,7 +84,7 @@ export default function SettingsAccount() {
           formId={FORM_IDS.__CHANGE_PRIMARY_EMAIL}
           mode={FORM_VIEW_MODE}
           initData={{
-            data: contactInfo.email,
+            data    : contactInfo.email,
             verified: contactInfo.emailVerified,
           }}
         />
@@ -112,10 +104,7 @@ export default function SettingsAccount() {
         </CoreTypographyCaption>
 
         <CoreBox
-          styleClasses={[
-            CoreClasses.ALIGNMENT.JUSTIFY_CONTENT_FLEX_END,
-            CoreClasses.MARGIN.MT2,
-          ]}
+          styleClasses={[CoreClasses.ALIGNMENT.JUSTIFY_CONTENT_FLEX_END, CoreClasses.MARGIN.MT2]}
         >
           <CoreContainedButton
             disabled

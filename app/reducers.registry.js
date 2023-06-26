@@ -1,7 +1,7 @@
-import testReducer from "./reducers/test.reducer";
 import settingsReducer from "./reducers/settingsReducer";
+import testReducer from "./reducers/test.reducer";
 
 export const ReducerRegistry = {
-  test: testReducer,
   settings: settingsReducer,
+  test    : testReducer,
 };
