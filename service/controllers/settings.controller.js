@@ -1,10 +1,14 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable id-length */
+/* eslint-disable no-console */
+/* eslint-disable no-undef */
 module.exports.getSettingMeta = async (req, res) => {
   db.SettingMeta.findAll()
     .then((data) => {
       console.log("SettingMeta fetched successfully");
       res
         .status(200)
-        .json({ message: "SettingMeta fetched successfully", data: data });
+        .json({ data: data, message: "SettingMeta fetched successfully" });
     })
     .catch((err) => {
       console.log(err);
@@ -14,11 +18,13 @@ module.exports.getSettingMeta = async (req, res) => {
 
 module.exports.postSettingMeta = async (req, res) => {
   try {
-    var errList = [],
+    let errList = [],
       ids = [];
-    for (var i = 0; i < req.body.length; i++) {
+
+    for (let i = 0; i < req.body.length; i++) {
       try {
-        var d = await db.SettingMeta.create(req.body[i]);
+        let d = await db.SettingMeta.create(req.body[i]);
+
         ids.push(d.id);
       } catch (err) {
         console.log(err.name);
@@ -29,9 +35,9 @@ module.exports.postSettingMeta = async (req, res) => {
     }
     console.log("Setting meta created successfully");
     res.status(200).json({
-      message: "Setting meta created successfully",
       errList: errList,
-      ids: ids,
+      ids    : ids,
+      message: "Setting meta created successfully",
     });
   } catch (err) {
     console.log(err);
@@ -40,9 +46,7 @@ module.exports.postSettingMeta = async (req, res) => {
 };
 
 module.exports.putSettingMeta = async (req, res) => {
-  db.SettingMeta.update(req.body, {
-    where: { id: req.params.id },
-  })
+  db.SettingMeta.update(req.body, { where: { id: req.params.id } })
     .then((data) => {
       if (data[0] > 0) {
         console.log("settingmeta updated successfully");
@@ -67,30 +71,25 @@ module.exports.postUserSettings = async (req, res) => {
 
     let settingsFound = await db.UserSettings.findOne({
       where: {
-        name: req.body.name,
+        name  : req.body.name,
         userId: req.user.userId,
       },
     });
 
     if (settingsFound) {
       console.log("Settings found", req.body.name);
-      let [nrows, rows] = await db.UserSettings.update(req.body, {
-        where: {
-          userId: req.user.userId,
-        },
-      });
+      let [nrows, rows] = await db.UserSettings.update(req.body, { where: { userId: req.user.userId } });
     } else {
       console.log("Settings creating", req.body.name);
       let d = await db.UserSettings.create({
         ...req.body,
         userId: req.user.userId,
       });
+
       console.log("Settings created", d.id);
     }
 
-    res.status(200).json({
-      message: "User Setting  updated",
-    });
+    res.status(200).json({ message: "User Setting  updated" });
   } catch (err) {
     console.log(err);
     res.status(500).json({ message: "Error in User Setting  update" });
@@ -99,14 +98,11 @@ module.exports.postUserSettings = async (req, res) => {
 
 module.exports.getUserSettings = async (req, res) => {
   try {
-    var data = await db.UserSettings.findAll({
-      where: {
-        userId: req.user.userId,
-      },
-    });
+    let data = await db.UserSettings.findAll({ where: { userId: req.user.userId } });
+
     res.status(200).json({
-      message: "User Setting  fetched",
       data,
+      message: "User Setting  fetched",
     });
   } catch (err) {
     console.log(err);
@@ -114,18 +110,12 @@ module.exports.getUserSettings = async (req, res) => {
   }
 };
 
-
 module.exports.deleteUserAccount = async (req, res) => {
-  var userId = req.user.userId;
+  let userId = req.user.userId;
+
   db.Users.update(
-    {
-      isActive: false,
-    },
-    {
-      where: {
-        id: userId,
-      },
-    }
+    { isActive: false },
+    { where: { id: userId } }
   )
     .then(([nrows, rows]) => {
       if (nrows > 0) {
@@ -146,21 +136,13 @@ module.exports.logout = async (req, res) => {
   try {
     console.error("user:: ", req.user);
     deviceId = await getDeviceId(req);
-    sessions = await db.SessionManager.findAll({
-      where: {
-        userId: req.user.userId,
-      },
-    });
-    for (var s = 0; s < sessions.length; s++) {
+    sessions = await db.SessionManager.findAll({ where: { userId: req.user.userId } });
+    for (let s = 0; s < sessions.length; s++) {
       currSession = sessions[s];
       if (bcrypt.compareSync(deviceId, currSession.deviceId)) {
         [nrows, rows] = await db.SessionManager.update(
           { refreshToken: "" },
-          {
-            where: {
-              id: currSession.id,
-            },
-          }
+          { where: { id: currSession.id } }
         );
         if (nrows > 0) {
           console.log("Successfully logged out");

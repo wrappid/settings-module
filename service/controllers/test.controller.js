@@ -8,8 +8,9 @@ const testFunctions = require("../functions/test.functions");
  * @returns 
  */
 module.exports.testGetFunc = async (req, res) => {
-    let data = await testFunctions.readTestData();
-    return res.status(200).json({ message: "This is a test GET API.", data });
+  let data = await testFunctions.readTestData();
+
+  return res.status(200).json({ data, message: "This is a test GET API." });
 };
 
 /**
@@ -19,7 +20,7 @@ module.exports.testGetFunc = async (req, res) => {
  * @returns 
  */
 module.exports.testPatchFunc = async (req, res) => {
-    return res.status(200).json({ message: "This is a test PATCH API." });
+  return res.status(200).json({ message: "This is a test PATCH API." });
 };
 
 /**
@@ -29,7 +30,7 @@ module.exports.testPatchFunc = async (req, res) => {
  * @returns 
  */
 module.exports.testPostFunc = async (req, res) => {
-    return res.status(200).json({ message: "This is a test POST API." });
+  return res.status(200).json({ message: "This is a test POST API." });
 };
 
 /**
@@ -39,5 +40,5 @@ module.exports.testPostFunc = async (req, res) => {
  * @returns 
  */
 module.exports.testPutFunc = async (req, res) => {
-    return res.status(200).json({ message: "This is a test PUT API." });
+  return res.status(200).json({ message: "This is a test PUT API." });
 };

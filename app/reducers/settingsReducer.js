@@ -1,4 +1,3 @@
-// import { LOGOUT_SUCCESS } from "../types/authTypes";
 import {
   DELETE_USER_ACCOUNT_SUCCESS,
   GET_USER_SETTINGS_ERROR,
@@ -64,7 +63,7 @@ const settingsReducer = (state = initState, action) => {
     case DELETE_USER_ACCOUNT_SUCCESS:
       return { ...state, deleteAccoountSuccess: true };
 
-      // case LOGOUT_SUCCESS:
+      // -- case LOGOUT_SUCCESS:
       //     // eslint-disable-next-line no-console
       //     console.log("FORM LOGOUT_SUCCESS REDUCER------", action);
       //     return initState;

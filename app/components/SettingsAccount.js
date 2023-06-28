@@ -12,9 +12,6 @@ import {
   CoreClasses
 } from "@wrappid/core";
 import { useDispatch, useSelector } from "react-redux";
-// import swal from "sweetalert";
-
-// import { LOGOUT_ERROR, LOGOUT_SUCCESS } from "../../store/types/authTypes";
 
 export default function SettingsAccount() {
   const dispatch = useDispatch();
@@ -24,7 +21,7 @@ export default function SettingsAccount() {
   );
 
   const OnDeleteAccount = () => {
-    // swal({
+    // -- swal({
     //   buttons: {
     //     cancel: "Cancel",
     //     confirm: "Yes",
@@ -51,7 +48,7 @@ export default function SettingsAccount() {
   React.useEffect(() => {
     if (deleteAccountSuccess)
       dispatch(
-        // apiRequestAction(
+        // -- apiRequestAction(
         //   HTTP.POST,
         //   LOGOUT_API,
         //   true,

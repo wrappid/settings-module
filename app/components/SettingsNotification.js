@@ -1,4 +1,4 @@
-// import {
+// -- import {
 //   CoreH5,
 //   CoreTypographyBody1,
 //   CoreForm,
@@ -11,7 +11,7 @@
 //   CoreSection,
 // } from "@wrappid/core";
 
-// export default function SettingsNotification() {
+// -- export default function SettingsNotification() {
 //   return (
 //     <>
 //       <CoreSection heading="Email Notifications">
@@ -28,7 +28,7 @@
 //         />
 //       </CoreSection>
 
-//       <CoreSection
+// --      <CoreSection
 //         heading={
 //           <CoreBox>
 //             <CoreFormGroup aria-label="position" row>
@@ -47,7 +47,7 @@
 //           payments, settlements, reports etc.
 //         </CoreTypographyBody1>
 
-//         <CoreForm
+// --        <CoreForm
 //           apiMode={"create"}
 //           onMountRead={false}
 //           formId={FORM_IDS.__UPDATE_SMS_NOTIFICATIONS}
@@ -55,13 +55,13 @@
 //         />
 //       </CoreSection>
 
-//       <CoreSection heading="WhatsApp Notifications">
+//  --     <CoreSection heading="WhatsApp Notifications">
 //         <CoreTypographyBody1>
 //           Enter mobile numbers that will receive whatsapp notifications
 //           regarding payments, settlements, reports etc.
 //         </CoreTypographyBody1>
 
-//         <CoreForm
+//   --      <CoreForm
 //           apiMode={"create"}
 //           onMountRead={false}
 //           formId={FORM_IDS.__UPDATE_WHATSAPP_NOTIFICATIONS}
