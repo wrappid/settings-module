@@ -20,7 +20,6 @@ export default function SettingsContact() {
           allowEdit={false}
           formId={FORM_IDS.__CONTACT_EMAIL}
           mode={FORM_VIEW_MODE}
-          query={{ _defaultFilter: encodeURIComponent(JSON.stringify({ personId: personId })) }}
         />
 
         {/* -- <CoreEmailOrPhoneLink /> */}
@@ -38,7 +37,6 @@ export default function SettingsContact() {
           allowEdit={false}
           formId={FORM_IDS.__CONTACT_PHONE}
           mode={FORM_VIEW_MODE}
-          query={{ _defaultFilter: encodeURIComponent(JSON.stringify({ personId: personId })) }}
         />
       </CoreSection>
     </>
