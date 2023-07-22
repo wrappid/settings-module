@@ -63,25 +63,26 @@ export default function SettingsAccount() {
   console.log("CONTACT INFO", contactInfo);
   return (
     <>
-      <CoreSection heading="Primary Phone">
+      <CoreSection heading="Primary Phone" styleClasses={[CoreClasses.COLOR.TEXT_SECONDARY_DARK]}>
         <CoreForm
           formId={FORM_IDS.__CHANGE_PRIMARY_PHONE}
           mode={FORM_VIEW_MODE}
           allowDelete={false}
           initData={{
-            data    : contactInfo.phone,
+            data: contactInfo.phone,
             verified: contactInfo.phoneVerified,
           }}
         />
       </CoreSection>
 
-      <CoreSection heading="Primary Email">
+      <CoreSection heading="Primary Email" styleClasses={[CoreClasses.COLOR.TEXT_SECONDARY_DARK]}>
         <CoreForm
+          styleClasses={[CoreClasses.COLOR.TEXT_SECONDARY_DARK]}
           allowDelete={false}
           formId={FORM_IDS.__CHANGE_PRIMARY_EMAIL}
           mode={FORM_VIEW_MODE}
           initData={{
-            data    : contactInfo.email,
+            data: contactInfo.email,
             verified: contactInfo.emailVerified,
           }}
         />
@@ -89,7 +90,8 @@ export default function SettingsAccount() {
 
       <CoreSection
         heading="Delete Account"
-        styleClasses={[CoreClasses.BG.BG_SECONDARY_LIGHT]}
+        styleClasses={[CoreClasses.BG.BG_SECONDARY_LIGHT, CoreClasses.COLOR.TEXT_SECONDARY_DARK]}
+
       >
         <CoreTypographyBody1>
           You can delete your user account. Keep in mind after 7 days your

@@ -1,5 +1,5 @@
 import {
-  CoreForm, FORM_IDS, FORM_VIEW_MODE, CoreSection, CoreBox, CoreTypographyBody1 
+  CoreForm, FORM_IDS, FORM_VIEW_MODE, CoreSection, CoreBox, CoreTypographyBody1, CoreClasses
 } from "@wrappid/core";
 import { useSelector } from "react-redux";
 
@@ -8,7 +8,7 @@ export default function SettingsContact() {
 
   return (
     <>
-      <CoreSection heading="Emails">
+      <CoreSection heading="Emails" styleClasses={[CoreClasses.COLOR.TEXT_SECONDARY_DARK]}>
         <CoreBox>
           <CoreTypographyBody1>
             Please enter the email address you would like to use as your primary contact method. Make sure it is a valid and active email address that you have access to.
@@ -25,13 +25,13 @@ export default function SettingsContact() {
         {/* -- <CoreEmailOrPhoneLink /> */}
       </CoreSection>
 
-      <CoreSection heading="Phone Numbers">
+      <CoreSection heading="Phone Numbers" styleClasses={[CoreClasses.COLOR.TEXT_SECONDARY_DARK]}>
         <CoreBox>
           <CoreTypographyBody1>
             Enter the phone number you would like to associate with your account. This can be a mobile number.
           </CoreTypographyBody1>
         </CoreBox>
-        
+
         <CoreForm
           arrayView={true}
           allowEdit={false}
