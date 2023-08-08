@@ -1,80 +1,25 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable id-length */
-import { queryBuilder } from "@wrappid/core";
 
-import { communicationTypes } from "./types/communicationTypes";
+import {
+  SanChangePrimaryContact, SanContactEmailsCreate, SanContactPhonesCreate, SanContactWapCreate, SanContactsRead, SanContactsReadUrlChange, SanReadPrimaryEmail, SanReadPrimaryPhone 
+} from "./functions/sanity.functions";
   
 // asyncSelect and formSubmitSanitization
 
-export const FunctionsRegistry = {
-  SanChangePrimaryContact: (formData, apiMeta, state, others) => {
-    return {
-      endpoint : apiMeta.endpoint,
-      reduxData: apiMeta.reduxData,
-      values   : { data: formData.data.data, id: formData.data.id },
-    };
-  },
-  SanContactEmailsCreate: (formData, apiMeta, state, others) => {
-    return {
-      endpoint : apiMeta.endpoint,
-      reduxData: apiMeta.reduxData,
-      values   : { data: formData.data, type: communicationTypes.MAIL },
-    };
-  },
+export const FunctionRegistry = {
+  SanChangePrimaryContact: SanChangePrimaryContact,
+  SanContactEmailsCreate : SanContactEmailsCreate,
         
-  SanContactPhonesCreate: (formData, apiMeta, state, others) => {
-    return {
-      endpoint : apiMeta.endpoint,
-      reduxData: apiMeta.reduxData,
-      values   : { data: formData.data, type: communicationTypes.SMS },
-    };
-  },
-  SanContactWapCreate: (formData, apiMeta, state, others) => {
-    return {
-      endpoint : apiMeta.endpoint,
-      reduxData: apiMeta.reduxData,
-      values   : { data: formData.data, type: communicationTypes.WHATSAPP },
-    };
-  },
-  SanContactsRead: (data) => {
-    // -- console.log("SANITING", apiMeta, others);
-    return data?.rows
-      ?.filter((d) => d.isActive)
-      .map((m) => {
-        return {
-          data    : m.data,
-          id      : m.id,
-          verified: m.verified,
-        };
-      });
-  },
+  SanContactPhonesCreate: SanContactPhonesCreate,
+  SanContactWapCreate   : SanContactWapCreate,
+  SanContactsRead       : SanContactsRead,
         
-  SanContactsReadUrlChange: (formData, apiMeta, state, others) => {
-    // -- console.log("SANITING", apiMeta, others);
-    let endUrl = apiMeta.endpoint?.includes("?") ? apiMeta.endpoint : queryBuilder(apiMeta.endpoint, { _defaultFilter: encodeURIComponent(JSON.stringify({ personId: state.profile.basic.id })) });
-      
-    return {
-      endpoint : endUrl,
-      reduxData: apiMeta.reduxData,
-      values   : apiMeta.values,
-    };
-  },
+  SanContactsReadUrlChange: SanContactsReadUrlChange,
         
-  SanReadPrimaryEmail: (data) => {
-    // -- console.log("SANITING", apiMeta, others);
-    return {
-      data    : data.email,
-      verified: data.emailVerified,
-    };
-  },
+  SanReadPrimaryEmail: SanReadPrimaryEmail,
         
-  SanReadPrimaryPhone: (data) => {
-    // -- console.log("SANITING", apiMeta, others);
-    return {
-      data    : data.phone,
-      verified: data.phoneVerified,
-    };
-  },
+  SanReadPrimaryPhone: SanReadPrimaryPhone,
         
   changePrimaryContact: {
     getOptionLabel: (data) => {
