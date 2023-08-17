@@ -6,7 +6,7 @@ import SettingsPassword from "./components/SettingsPassword";
 import SettingsProfile from "./components/SettingsProfile";
 // -- import SettingsNotification from "./components/SettingsNotification";
 
-export const ComponentRegistry = {
+export const ComponentsRegistry = {
   Settings          : { comp: Settings },
   SettingsAccount   : { comp: SettingsAccount },
   SettingsAppearance: { comp: SettingsAppearance },

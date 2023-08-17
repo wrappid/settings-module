@@ -1,5 +1,5 @@
 
-export const ValidationRegistry = {
+export const ValidationsRegistry = {
   changePrimaryContact: {
     getOptionLabel: (data) => {
       return data?.data;
