@@ -10,14 +10,14 @@ import {
 } from "../types/settingsTypes";
 
 const initState = {
-  deleteAccoountSuccess: false,
-  getUserSettingsError: false,
+  deleteAccoountSuccess : false,
+  getUserSettingsError  : false,
   getUserSettingsLoading: false,
   getUserSettingsSuccess: false,
-  menu: [],
-  reload: false,
-  userSettings: null,
-  verifyOtpSuccess: false, //new line
+  menu                  : [],
+  reload                : false,
+  userSettings          : null,
+  verifyOtpSuccess      : false, //new line
 };
 
 const settingsReducer = (state = initState, action) => {
@@ -31,7 +31,7 @@ const settingsReducer = (state = initState, action) => {
     case GET_USER_SETTINGS_LOADING:
       return {
         ...state,
-        getUserSettingsError: false,
+        getUserSettingsError  : false,
         getUserSettingsLoading: true,
         getUserSettingsSuccess: false,
       };
@@ -45,17 +45,17 @@ const settingsReducer = (state = initState, action) => {
       });
       return {
         ...state,
-        getUserSettingsError: false,
+        getUserSettingsError  : false,
         getUserSettingsLoading: false,
         getUserSettingsSuccess: true,
-        reload: false,
-        userSettings: { ...state.userSettings, ...userSettings },
+        reload                : false,
+        userSettings          : { ...state.userSettings, ...userSettings },
       };
 
     case GET_USER_SETTINGS_ERROR:
       return {
         ...state,
-        getUserSettingsError: true,
+        getUserSettingsError  : true,
         getUserSettingsLoading: false,
         getUserSettingsSuccess: false,
       };
@@ -68,14 +68,14 @@ const settingsReducer = (state = initState, action) => {
 
     case OTP_VERIFY_SUCCESS:
       return { ...state, verifyOtpSuccess: true }; //new line
+
     case OTP_VERIFY_ERROR:
-      return { ...state, verifyOtpSuccess: false };  //new line
+      return { ...state, verifyOtpSuccess: false }; //new line
 
-
-    // -- case LOGOUT_SUCCESS:
-    //     // eslint-disable-next-line no-console
-    //     console.log("FORM LOGOUT_SUCCESS REDUCER------", action);
-    //     return initState;
+      // -- case LOGOUT_SUCCESS:
+      //     // eslint-disable-next-line no-console
+      //     console.log("FORM LOGOUT_SUCCESS REDUCER------", action);
+      //     return initState;
 
     default:
       return state;
