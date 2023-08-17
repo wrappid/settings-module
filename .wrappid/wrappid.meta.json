@@ -1,4 +1,14 @@
 {
     "projectType": "module",
-    "projectID": ""
+    "projectID": "",
+    "projectName": "settings",
+    "remote": true,
+    "repoProvider": "github.com",
+    "repoOwner": "wrappid",
+    "repoURL": "https://github.com/wrappid/settings-module.git",
+    "app": {
+        "renderType": []
+    },
+    "service": {},
+    "modules": {}
 }
