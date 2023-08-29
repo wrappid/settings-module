@@ -2,18 +2,39 @@
 /* eslint-disable id-length */
 /* eslint-disable no-console */
 /* eslint-disable no-undef */
-module.exports.getSettingMeta = async (req, res) => {
-  db.SettingMeta.findAll()
-    .then((data) => {
-      console.log("SettingMeta fetched successfully");
-      res
-        .status(200)
-        .json({ data: data, message: "SettingMeta fetched successfully" });
-    })
-    .catch((err) => {
-      console.log(err);
-      res.status(500).json({ message: "Error to fetch settingMeta" });
+
+const settingFunction = require("../functions/settings.functions");
+
+/**
+       * 
+       * @param {*} req 
+       * @param {*} res 
+       */
+module.exports.getUserSettings = async (req, res) => {
+  try {
+    let {status, ...restData}  = await settingFunction.getUserSettingsFunc(req,res);
+    res.status(status).json({
+      ...restData
     });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ message: "Error in User Setting  fetch" });
+  }
+};
+
+
+
+module.exports.getSettingMeta = async (req, res) => {
+  try{
+    let {status, ...restData} = await settingFunction.getSettingMetaFunc(req,res);
+    res.status(status).json({
+      ...restData
+    });
+  }catch(err){
+    console.log(err);
+    res.status(500).json({ message: "Error in User Setting  fetch" });
+  }
+
 };
 
 module.exports.postSettingMeta = async (req, res) => {
@@ -87,7 +108,7 @@ module.exports.postUserSettings = async (req, res) => {
       });
 
       console.log("Settings created", d.id);
-    }
+          }
 
     res.status(200).json({ message: "User Setting  updated" });
   } catch (err) {
@@ -96,19 +117,6 @@ module.exports.postUserSettings = async (req, res) => {
   }
 };
 
-module.exports.getUserSettings = async (req, res) => {
-  try {
-    let data = await db.UserSettings.findAll({ where: { userId: req.user.userId } });
-
-    res.status(200).json({
-      data,
-      message: "User Setting  fetched",
-    });
-  } catch (err) {
-    console.log(err);
-    res.status(500).json({ message: "Error in User Setting  fetch" });
-  }
-};
 
 module.exports.deleteUserAccount = async (req, res) => {
   let userId = req.user.userId;

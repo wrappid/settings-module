@@ -1,11 +1,12 @@
-const testController = require("./controllers/test.controller");
-
+const settingsController = require("./controllers/settings.controller");
+const { CoreMiddlewaresRegistry } = require("@wrappid/service-core");
+const {getUserSettings,getSettingMeta} = require("./validations/settings.validation")
 const controllersRegistry = {
-    "testGetAllFunc": testController.testGetAllFunc,
-    "testGetFunc": testController.testGetFunc,
-    "testPostFunc": testController.testPostFunc,
-    "testPutFunc": testController.testPutFunc,
-    "testPatchFunc": testController.testPatchFunc,
+  getUserSettings: [
+    CoreMiddlewaresRegistry.validation(getUserSettings),
+    settingsController.getUserSettings,
+  ],
+  "getSettingMeta" : [ CoreMiddlewaresRegistry.validation(getSettingMeta), settingsController.getSettingMeta]
 };
 
 exports.controllersRegistry = controllersRegistry;

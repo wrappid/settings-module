@@ -1,11 +1,7 @@
-const testFunctions = require("./functions/test.functions");
+const settingFunction = require("./functions/settings.functions");
 
 const functionsRegistry = {
-    "readTestData": testFunctions.readTestData,
-    "readTestDataAll": testFunctions.readTestDataAll,
-    "createTestData": testFunctions.createTestData,
-    "updateTestData": testFunctions.updateTestData,
-    "deleteTestData": testFunctions.deleteTestData,
+   "getUserSettingsFunc" : settingFunction.getUserSettingsFunc
 };
 
 exports.functionsRegistry = functionsRegistry;

@@ -1,7 +1,7 @@
-const testValidations = require("../validations/test.validation");
+const settingsValidations = require("./validations/settings.validation");
 
 const validationsRegistry = {
-    ...testValidations
+    ...settingsValidations
 };
 
 exports.validationsRegistry = validationsRegistry;
