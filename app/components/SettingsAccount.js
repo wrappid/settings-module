@@ -69,8 +69,8 @@ export default function SettingsAccount() {
           mode={FORM_VIEW_MODE}
           allowDelete={false}
           initData={{
-            data    : contactInfo.phone,
-            verified: contactInfo.phoneVerified,
+            data    : contactInfo?.phone,
+            verified: contactInfo?.phoneVerified,
           }}
         />
       </CoreSection>
@@ -82,8 +82,8 @@ export default function SettingsAccount() {
           formId={FORM_IDS.__CHANGE_PRIMARY_EMAIL}
           mode={FORM_VIEW_MODE}
           initData={{
-            data    : contactInfo.email,
-            verified: contactInfo.emailVerified,
+            data    : contactInfo?.email,
+            verified: contactInfo?.emailVerified,
           }}
         />
       </CoreSection>
