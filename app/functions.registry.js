@@ -21,15 +21,13 @@ export const FunctionsRegistry = {
         
   SanReadPrimaryPhone: SanReadPrimaryPhone,
         
-  changePrimaryContact: {
-    getOptionLabel: (data) => {
-      return data?.data;
-    },
-    getOptionValue: (data) => {
-      return data;
-    },
-    isOptionsEqualToValue: (option, value) => {
-      return option?.id === value?.data;
-    },
+  __CHANGEPRIMARYCONTACT_GET_OPTION_LABEL: (data) => {
+    return data?.data;
+  },
+  __CHANGEPRIMARYCONTACT_GET_OPTION_VALUE: (data) => {
+    return data;
+  },
+  __CHANGEPRIMARYCONTACT_IS_OPTIONS_EQUAL_TO_VALUE: (option, value) => {
+    return option?.id === value?.data;
   },
 };
