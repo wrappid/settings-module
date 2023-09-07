@@ -9,6 +9,8 @@ import {
   OTP_VERIFY_ERROR
 } from "../types/settingsTypes";
 
+import { LOGOUT_SUCCESS } from '@wrappid/core';
+
 const initState = {
   deleteAccoountSuccess : false,
   getUserSettingsError  : false,
@@ -72,10 +74,8 @@ const settingsReducer = (state = initState, action) => {
     case OTP_VERIFY_ERROR:
       return { ...state, verifyOtpSuccess: false }; //new line
 
-      // -- case LOGOUT_SUCCESS:
-      //     // eslint-disable-next-line no-console
-      //     console.log("FORM LOGOUT_SUCCESS REDUCER------", action);
-      //     return initState;
+    case LOGOUT_SUCCESS:
+      return initState;
 
     default:
       return state;
