@@ -3,7 +3,8 @@ const { CoreMiddlewaresRegistry } = require("@wrappid/service-core");
 const {
   getUserSettings,
   getSettingMeta,
-  postAddContact
+  postAddContact,
+  putChangePrimaryContact
 } = require("./validations/settings.validation");
 const controllersRegistry = {
   getUserSettings: [
@@ -17,6 +18,8 @@ const controllersRegistry = {
   postAddContact: [settingsController.postAddContact],
   putDeleteContact: [settingsController.putDeleteContact],
   getPrimaryContact: [settingsController.getPrimaryContact],
+  putChangePrimaryContact: [CoreMiddlewaresRegistry.validation(putChangePrimaryContact),settingsController.putChangePrimaryContact]
+
 };
 //
 exports.controllersRegistry = controllersRegistry;

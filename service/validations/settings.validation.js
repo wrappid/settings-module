@@ -30,4 +30,22 @@ const postAddContact = {
   query: yup.object({}).noUnknown().strict(),
 };
 
-module.exports = { getUserSettings, getSettingMeta, postAddContact };
+const putChangePrimaryContact = {
+  body: yup
+    .object({
+      data: emailOrPhone.required("Please enter emailOrPhone!!"),
+      id: yup.mixed().notRequired(),
+    })
+    .noUnknown()
+    .strict(),
+  query: yup.object({
+    type: yup.string().required("Please enter Type!!"),
+  }).noUnknown().strict(),
+};
+
+module.exports = { 
+  getUserSettings, 
+  getSettingMeta, 
+  postAddContact,
+  putChangePrimaryContact
+ };

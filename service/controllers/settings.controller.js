@@ -72,3 +72,16 @@ module.exports.getPrimaryContact = async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 };
+
+module.exports.putChangePrimaryContact = async (req, res) => {
+  try{
+    // res.status(200).json({message: "API call succesfully!!"});
+    let {status, ...restData} = await settingFunction.putChangePrimaryContactFunc(req,res);
+    res.status(status).json({
+      ...restData
+    });
+  }catch(err){
+    console.log(err);
+    res.status(500).json({ message: err.message });
+  }
+};

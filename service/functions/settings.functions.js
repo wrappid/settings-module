@@ -1,4 +1,11 @@
-const { databaseActions, coreConstant } = require("@wrappid/service-core");
+const {
+  communicate,
+  configProvider,
+  coreConstant,
+  databaseActions,
+  databaseProvider,
+} = require("@wrappid/service-core");
+
 const moment = require("moment/moment");
 
 const getUserSettingsFunc = async (req, res) => {
@@ -118,7 +125,7 @@ const getPrimaryContactFunc = async (req, res) => {
     })
     let personId = person.id;
     let contactType = req.params.contactType;
-    var personContacts = await databaseActions.findAll("application","PersonContacts",{
+    let personContacts = await databaseActions.findAll("application","PersonContacts",{
       where: {
         personId: personId,
         type: contactType,
@@ -143,4 +150,115 @@ const getPrimaryContactFunc = async (req, res) => {
   }
 };
 
-module.exports = { getUserSettingsFunc, getSettingMetaFunc, postAddContactFunc, putDeleteContactFunc, getPrimaryContactFunc };
+const putChangePrimaryContactFunc = async (req, res) => {
+  try {
+    let personId = req.user.personId;
+    let existingContact = await databaseActions.findOne("application","PersonContacts",{
+      where: {
+        type: req.query.type,
+        data: req.body.data,
+        primaryFlag: true,
+      },
+
+     
+    });
+    if (existingContact) {
+      console.log(
+        "Already a primary contact for other person: ",
+        existingContact.personId
+      );
+      return {status:500, message: "Already a primary contact for other user" };
+      // res
+      //   .status(500)
+      //   .json({ message: "Already a primary contact for other user" });
+    }
+    
+  
+  else if (req.user.email == req.body.data) {
+    console.log("Please add other email");
+    return {status:500, message: "Please add other email" };
+    // res.status(500).json({ message: "Please add other email" });
+  }
+    else {
+      let result = await databaseProvider.application.sequelize.transaction(async (t) => {
+        await databaseActions.update("application","PersonContacts",
+          { primaryFlag: false },
+          {
+            where: {
+              personId: personId,
+              type: req.query.type,
+            }
+          },
+          {
+            transaction: t
+          }
+        );
+        console.log("All contacts made non primary");
+        await databaseActions.update("application","PersonContacts",
+          { primaryFlag: true },
+          {
+            where: {
+              id: req.body.id,
+            }
+          },
+          {
+            transaction: t
+          }
+        );
+        console.log(
+          "Contact made primary id:,",
+          req.body.id,
+          ", contact:",
+          req.body.data
+        );
+
+        let uData = {};
+        let pData = {};
+        if (req.query.type == coreConstant.contact.PHONE) {
+          uData[coreConstant.contact.PHONE] = req.body.data;
+          pData["phoneVerified"] = true;
+        }
+        if (req.query.type == coreConstant.contact.EMAIL) {
+          uData[coreConstant.contact.EMAIL] = req.body.data;
+          pData["emailVerified"] = true;
+        }
+
+        console.log(
+          "U DATA",
+          uData,
+          "P data:",
+          pData,
+          "id:",
+          req.user.userId
+        );
+        await databaseActions.update("application","Users",uData, {
+          where: {
+            id: req.user.userId,
+          }
+        },
+          {
+          transaction: t
+          }
+          );
+        await databaseActions.update("application","Persons",pData, {
+          where: {
+            id: personId,
+          }
+        },
+        {
+          transaction: t,
+        });
+        console.log("person table updated");
+      });
+      console.log("Primary contact updated");
+      return {status:200, message: "Primary contact updated" };
+      // res.status(200).json({ message: "Primary contact updated" });
+    }
+  } catch (err) {
+    console.log(err);
+    return {status:500 ,message: "Error to fetch Contacts data"  }
+    // res.status(500).json({ message: "Error to fetch Contacts data" });
+  }
+};
+
+module.exports = { getUserSettingsFunc, getSettingMetaFunc, postAddContactFunc, putDeleteContactFunc, getPrimaryContactFunc, putChangePrimaryContactFunc };
