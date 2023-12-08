@@ -15,7 +15,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 export default function SettingsAccount() {
   const dispatch = useDispatch();
-  const contactInfo = useSelector((state) => state.profile.contact);
+  const contactInfo = useSelector((state) => state?.profile?.contact);
   const deleteAccountSuccess = useSelector(
     (state) => state.settings.deleteAccoountSuccess
   );

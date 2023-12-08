@@ -1,1 +1,1 @@
-export const RouteRegistry = { SETTINGS: "settings" };
+export const RoutesRegistry = { SETTINGS: "settings" };

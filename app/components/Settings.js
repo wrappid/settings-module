@@ -17,6 +17,11 @@ export default function Settings() {
       id   : "changepassword",
       label: "Change Password",
     },
+    {
+      comp : "SettingsAppearance",
+      id   : "settingsAppearance",
+      label: "Appearance",
+    },  
   ];
 
   return <CoreCustomTabs tabsContent={tabsContent} />;
