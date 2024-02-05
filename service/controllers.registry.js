@@ -3,6 +3,7 @@ const settingsController = require("./controllers/settings.controller");
 const {
   getUserSettings,
   getSettingMeta,
+  // eslint-disable-next-line no-unused-vars
   postAddContact,
   putChangePrimaryContact
 } = require("./validations/settings.validation");
