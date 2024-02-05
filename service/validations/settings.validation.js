@@ -48,4 +48,4 @@ module.exports = {
   getSettingMeta, 
   postAddContact,
   putChangePrimaryContact
- };
+};
