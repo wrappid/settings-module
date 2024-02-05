@@ -1,3 +1,5 @@
+import { LOGOUT_SUCCESS } from "@wrappid/core";
+
 import {
   DELETE_USER_ACCOUNT_SUCCESS,
   GET_USER_SETTINGS_ERROR,
@@ -9,8 +11,6 @@ import {
   OTP_VERIFY_ERROR
 } from "../types/settingsTypes";
 
-import { LOGOUT_SUCCESS } from '@wrappid/core';
-
 const initState = {
   deleteAccoountSuccess : false,
   getUserSettingsError  : false,
@@ -19,7 +19,7 @@ const initState = {
   menu                  : [],
   reload                : false,
   userSettings          : null,
-  verifyOtpSuccess      : false, //new line
+  verifyOtpSuccess      : false,
 };
 
 const settingsReducer = (state = initState, action) => {
@@ -69,10 +69,10 @@ const settingsReducer = (state = initState, action) => {
       return { ...state, deleteAccoountSuccess: true };
 
     case OTP_VERIFY_SUCCESS:
-      return { ...state, verifyOtpSuccess: true }; //new line
+      return { ...state, verifyOtpSuccess: true }; 
 
     case OTP_VERIFY_ERROR:
-      return { ...state, verifyOtpSuccess: false }; //new line
+      return { ...state, verifyOtpSuccess: false }; 
 
     case LOGOUT_SUCCESS:
       return initState;

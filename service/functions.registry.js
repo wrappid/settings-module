@@ -1,7 +1,7 @@
 const settingFunction = require("./functions/settings.functions");
 
 const functionsRegistry = {
-   "getUserSettingsFunc" : settingFunction.getUserSettingsFunc
+  "getUserSettingsFunc" : settingFunction.getUserSettingsFunc
 };
 
 exports.functionsRegistry = functionsRegistry;
