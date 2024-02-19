@@ -1,17 +1,13 @@
-const yup = require("yup");
+import * as yup from "yup";
 
-const emailOrPhone = yup
+const emailOrPhone:any = yup
   .string()
   .matches(/^([0-9]{10}|[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+)$/);
 
-const getUserSettings = {
-  body: yup.object({}).noUnknown().strict(),
-  query: yup.object({}).noUnknown().strict(),
-};
 
-const getSettingMeta = {
-  body: yup.object({}).noUnknown().strict(),
-  query: yup.object({}).noUnknown().strict(),
+const getUserSettings = {
+  body: yup.object<any>().noUnknown().strict(),
+  query: yup.object<any>().noUnknown().strict(),
 };
 
 const postAddContact = {
@@ -43,9 +39,8 @@ const putChangePrimaryContact = {
   }).noUnknown().strict(),
 };
 
-module.exports = { 
+export { 
   getUserSettings, 
-  getSettingMeta, 
   postAddContact,
   putChangePrimaryContact
 };

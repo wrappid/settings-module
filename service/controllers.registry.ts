@@ -1,27 +1,20 @@
 const { CoreMiddlewaresRegistry } = require("@wrappid/service-core");
-const settingsController = require("./controllers/settings.controller");
-const {
-  getUserSettings,
-  getSettingMeta,
-  // eslint-disable-next-line no-unused-vars
-  postAddContact,
+import * as settingsController from "./controllers/settings.controller";
+import {
+  getUserSettings, 
   putChangePrimaryContact
-} = require("./validations/settings.validation");
+} from "./validations/settings.validation";
 
 const controllersRegistry = {
   getUserSettings: [
     CoreMiddlewaresRegistry.validation(getUserSettings),
     settingsController.getUserSettings,
   ],
-  getSettingMeta: [
-    CoreMiddlewaresRegistry.validation(getSettingMeta),
-    settingsController.getSettingMeta,
-  ],
-  postAddContact: [settingsController.postAddContact],
+ 
   putDeleteContact: [settingsController.putDeleteContact],
   getPrimaryContact: [settingsController.getPrimaryContact],
   putChangePrimaryContact: [CoreMiddlewaresRegistry.validation(putChangePrimaryContact),settingsController.putChangePrimaryContact]
 
 };
 //
-exports.controllersRegistry = controllersRegistry;
+export default controllersRegistry;

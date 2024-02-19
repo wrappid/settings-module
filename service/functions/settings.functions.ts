@@ -1,15 +1,9 @@
 /* eslint-disable no-unused-vars */
-const {
-  communicate,
-  configProvider,
-  coreConstant,
-  databaseActions,
-  databaseProvider,
-} = require("@wrappid/service-core");
+import { communicate, configProvider, coreConstant, databaseActions, databaseProvider } from "@wrappid/service-core";
 
-const moment = require("moment/moment");
+import moment from "moment/moment";
 
-const getUserSettingsFunc = async (req, res) => {
+export const getUserSettingsFunc = async (req:any, res: any) => {
   try {
     let  data = await databaseActions.findAll("application", "UserSettings", {
       where: {
@@ -24,27 +18,10 @@ const getUserSettingsFunc = async (req, res) => {
   }
 };
 
-const getSettingMetaFunc = async (req, res) => {
-  try {
-    let data = await databaseActions.findAll("application", "SettingMeta", {});
-    if (data.length > 1) {
-      console.log("SettingMeta fetched successfully");
-      return {
-        status: 200, message: "SettingMeta fetched successfully", data
-      };
-      //   res
-      //     .status(200)
-      //     .json({ data: data, message: "SettingMeta fetched successfully" });
-    }
-  } catch (err) {
-    console.log(err);
-    throw err;
-  }
-};
 
 
 
-const postAddContactFunc = async (req, res) => {
+export const postAddContactFunc = async (req:any, res:any) => {
   try {
     let person = await databaseActions.findOne("application","Persons",{
       where: {
@@ -87,7 +64,7 @@ const postAddContactFunc = async (req, res) => {
   }
 };
 
-const putDeleteContactFunc = async (req, res) => {
+export const putDeleteContactFunc = async (req:any, res:any) => {
   try {
     let contact = await databaseActions.findByPk("application","PersonContacts",req.params.id);
     if (contact.primaryFlag) {
@@ -117,7 +94,7 @@ const putDeleteContactFunc = async (req, res) => {
   }
 };
 
-const getPrimaryContactFunc = async (req, res) => {
+export const getPrimaryContactFunc = async (req:any, res:any) => {
   try {
     let person = await databaseActions.findOne("application","Persons",{
       where: {
@@ -151,7 +128,7 @@ const getPrimaryContactFunc = async (req, res) => {
   }
 };
 
-const putChangePrimaryContactFunc = async (req, res) => {
+export const putChangePrimaryContactFunc = async (req:any, res:any) => {
   try {
     let personId = req.user.personId;
     let existingContact = await databaseActions.findOne("application","PersonContacts",{
@@ -181,7 +158,7 @@ const putChangePrimaryContactFunc = async (req, res) => {
     // res.status(500).json({ message: "Please add other email" });
     }
     else {
-      let result = await databaseProvider.application.sequelize.transaction(async (t) => {
+      let result = await databaseProvider.application.sequelize.transaction(async (t:any) => {
         await databaseActions.update("application","PersonContacts",
           { primaryFlag: false },
           {
@@ -213,8 +190,8 @@ const putChangePrimaryContactFunc = async (req, res) => {
           req.body.data
         );
 
-        let uData = {};
-        let pData = {};
+        let uData:any = {};
+        let pData:any = {};
         if (req.query.type == coreConstant.contact.PHONE) {
           uData[coreConstant.contact.PHONE] = req.body.data;
           pData["phoneVerified"] = true;
@@ -262,4 +239,3 @@ const putChangePrimaryContactFunc = async (req, res) => {
   }
 };
 
-module.exports = { getUserSettingsFunc, getSettingMetaFunc, postAddContactFunc, putDeleteContactFunc, getPrimaryContactFunc, putChangePrimaryContactFunc };
