@@ -1,9 +1,10 @@
-const { CoreMiddlewaresRegistry } = require("@wrappid/service-core");
+import { CoreMiddlewaresRegistry } from "@wrappid/service-core";
 import * as settingsController from "./controllers/settings.controller";
 import {
   getUserSettings, 
   putChangePrimaryContact
 } from "./validations/settings.validation";
+
 
 const controllersRegistry = {
   getUserSettings: [

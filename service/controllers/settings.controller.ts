@@ -1,5 +1,5 @@
-import * as settingFunction from "../functions/settings.functions";
 import { Request, Response} from "express";
+import * as settingFunction from "../functions/settings.functions";
 /**
        * 
        * @param {*} req 
@@ -7,7 +7,7 @@ import { Request, Response} from "express";
        */
 export const getUserSettings = async (req:Request, res:Response) => {
   try {
-    let {status, ...restData}  = await settingFunction.getUserSettingsFunc(req,res);
+    const {status, ...restData}  = await settingFunction.getUserSettingsFunc(req,res);
     res.status(status).json({
       ...restData
     });
@@ -22,7 +22,7 @@ export const getUserSettings = async (req:Request, res:Response) => {
 
 export const postAddContact = async (req:Request, res:Response) => {
   try{
-    let {status, ...restData} = await settingFunction.postAddContactFunc(req,res);
+    const {status, ...restData} = await settingFunction.postAddContactFunc(req,res);
     res.status(status).json({
       ...restData
     });
@@ -34,7 +34,7 @@ export const postAddContact = async (req:Request, res:Response) => {
 
 export const putDeleteContact = async (req:Request, res:Response) => {
   try{
-    let {status, ...restData} = await settingFunction.putDeleteContactFunc(req,res);
+    const {status, ...restData} = await settingFunction.putDeleteContactFunc(req,res);
     res.status(status).json({
       ...restData
     });
@@ -46,7 +46,7 @@ export const putDeleteContact = async (req:Request, res:Response) => {
 
 export const getPrimaryContact = async (req:Request, res:Response) => {
   try{
-    let {status, ...restData} = await settingFunction.getPrimaryContactFunc(req,res);
+    const {status, ...restData} = await settingFunction.getPrimaryContactFunc(req,res);
     res.status(status).json({
       ...restData
     });
@@ -59,7 +59,7 @@ export const getPrimaryContact = async (req:Request, res:Response) => {
 export const putChangePrimaryContact = async (req:Request, res:Response) => {
   try{
     // res.status(200).json({message: "API call succesfully!!"});
-    let {status, ...restData} = await settingFunction.putChangePrimaryContactFunc(req,res);
+    const {status, ...restData} = await settingFunction.putChangePrimaryContactFunc(req,res);
     res.status(status).json({
       ...restData
     });

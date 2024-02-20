@@ -1,36 +1,27 @@
-import {
-  CoreH6,
-  CoreTypographyBody1,
-  setUserTheme,
-  CoreCard,
-  CoreBox,
-  CoreGrid
-} from "@wrappid/core";
-import { useDispatch, useSelector } from "react-redux";
-
-import theme1 from "../themes/theme1.json";
-import theme2 from "../themes/theme2.json";
+import { CoreTypographyBody1 } from "@wrappid/core";
 
 export default function SettingsAppearance() {
-  const userTheme = useSelector((state) => state.app.userTheme);
-  const userThemeId = useSelector((state) => state.app.userThemeId);
-  const allThemes = [{ id: "theme-1", label: "Theme One", value: theme1 }, { id: "theme-2", label: "Theme Two", value: theme2 }];
+  // eslint-disable-next-line etc/no-commented-out-code
+  // const userTheme = useSelector((state) => state.app.userTheme);
+  // const userThemeId = useSelector((state) => state.app.userThemeId);
+  // const allThemes = [{ id: "theme-1", label: "Theme One", value: theme1 }, { id: "theme-2", label: "Theme Two", value: theme2 }];
 
-  const dispatch = useDispatch();
-  const changeUserTheme = (id) => {
-    let selTheme = allThemes?.find((theme) => theme.id === id)?.value;
+  // const dispatch = useDispatch();
+  // const changeUserTheme = (id) => {
+  //   let selTheme = allThemes?.find((theme) => theme.id === id)?.value;
 
-    // eslint-disable-next-line no-console
-    console.log("THEME", selTheme);
-    dispatch(setUserTheme({ id: id, theme: selTheme }));
-  };
+  //   console.log("THEME", selTheme);
+  //   dispatch(setUserTheme({ id: id, theme: selTheme }));
+  // };
 
-  // eslint-disable-next-line no-console
-  console.log("USer Theme", userTheme);
+  //  eslint-disable-next-line no-console
+  // console.log("USer Theme", userTheme);
 
   return (
     <>
-      <CoreH6>Available Themes</CoreH6>
+      <CoreTypographyBody1>Theme appearance functionality recode pending</CoreTypographyBody1>
+
+      {/* <CoreH6>Available Themes</CoreH6>
 
       <CoreGrid>
         {allThemes?.map((theme) => (
@@ -43,7 +34,7 @@ export default function SettingsAppearance() {
             gridProps={{ gridSize: { lg: 3, sm: 4, xs: 6 } }}
           >
             <CoreCard style={userThemeId === theme.id ? { borderRadius: 20, borderStyle: "solid", borderWidth: 2 } : {}}>
-              {/* <CoreCardContent> */}
+              <CoreCardContent>
               <CoreBox
                 style={{
                   backgroundColor: theme?.value?.palette?.primary?.main,
@@ -64,11 +55,11 @@ export default function SettingsAppearance() {
                 </CoreTypographyBody1>
               </CoreBox>
 
-              {/* </CoreCardContent> */}
+              </CoreCardContent>
             </CoreCard>
           </CoreBox>
         ))}
-      </CoreGrid>
+      </CoreGrid> */}
     </>
   );
 }

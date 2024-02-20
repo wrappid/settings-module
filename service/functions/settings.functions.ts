@@ -5,7 +5,7 @@ import moment from "moment/moment";
 
 export const getUserSettingsFunc = async (req:any, res: any) => {
   try {
-    let  data = await databaseActions.findAll("application", "UserSettings", {
+    const  data = await databaseActions.findAll("application", "UserSettings", {
       where: {
         userId: req.user.userId,
       },
@@ -23,13 +23,13 @@ export const getUserSettingsFunc = async (req:any, res: any) => {
 
 export const postAddContactFunc = async (req:any, res:any) => {
   try {
-    let person = await databaseActions.findOne("application","Persons",{
+    const person = await databaseActions.findOne("application","Persons",{
       where: {
         userId: req.user.userId
       }
     });
-    let personId = person.id;
-    let exists = await databaseActions.findOne("application","PersonContacts",{
+    const personId = person.id;
+    const exists = await databaseActions.findOne("application","PersonContacts",{
       where: {
         data: req.body.data.toString(),
         _status: coreConstant.entityStatus.ACTIVE,
@@ -41,7 +41,7 @@ export const postAddContactFunc = async (req:any, res:any) => {
       return{status: 500, message: "Contact already exists"};
       
     } else {
-      let createdContact = await databaseActions.create("application","PersonContacts",{
+      const createdContact = await databaseActions.create("application","PersonContacts",{
         ...req.body,
         type: isNaN(req.body.data)
           ? coreConstant.contact.EMAIL
@@ -66,13 +66,13 @@ export const postAddContactFunc = async (req:any, res:any) => {
 
 export const putDeleteContactFunc = async (req:any, res:any) => {
   try {
-    let contact = await databaseActions.findByPk("application","PersonContacts",req.params.id);
+    const contact = await databaseActions.findByPk("application","PersonContacts",req.params.id);
     if (contact.primaryFlag) {
       console.log("Can not delete primary mail");
       return {status:500 ,message: "Can not delete primary contact. Change primary then try again" };
       
     }
-    let [nrows, rows] = await databaseActions.update("application","PersonContacts",
+    const [nrows, rows] = await databaseActions.update("application","PersonContacts",
       {
         isActive: false,
         _status: coreConstant.entityStatus.DELETED,
@@ -96,14 +96,14 @@ export const putDeleteContactFunc = async (req:any, res:any) => {
 
 export const getPrimaryContactFunc = async (req:any, res:any) => {
   try {
-    let person = await databaseActions.findOne("application","Persons",{
+    const person = await databaseActions.findOne("application","Persons",{
       where: {
         userId: req.user.userId
       }
     });
-    let personId = person.id;
-    let contactType = req.params.contactType;
-    let personContacts = await databaseActions.findAll("application","PersonContacts",{
+    const personId = person.id;
+    const contactType = req.params.contactType;
+    const personContacts = await databaseActions.findAll("application","PersonContacts",{
       where: {
         personId: personId,
         type: contactType,
@@ -130,8 +130,8 @@ export const getPrimaryContactFunc = async (req:any, res:any) => {
 
 export const putChangePrimaryContactFunc = async (req:any, res:any) => {
   try {
-    let personId = req.user.personId;
-    let existingContact = await databaseActions.findOne("application","PersonContacts",{
+    const personId = req.user.personId;
+    const existingContact = await databaseActions.findOne("application","PersonContacts",{
       where: {
         type: req.query.type,
         data: req.body.data,
@@ -158,7 +158,7 @@ export const putChangePrimaryContactFunc = async (req:any, res:any) => {
     // res.status(500).json({ message: "Please add other email" });
     }
     else {
-      let result = await databaseProvider.application.sequelize.transaction(async (t:any) => {
+      const result = await databaseProvider.application.sequelize.transaction(async (t:any) => {
         await databaseActions.update("application","PersonContacts",
           { primaryFlag: false },
           {
@@ -190,8 +190,8 @@ export const putChangePrimaryContactFunc = async (req:any, res:any) => {
           req.body.data
         );
 
-        let uData:any = {};
-        let pData:any = {};
+        const uData:any = {};
+        const pData:any = {};
         if (req.query.type == coreConstant.contact.PHONE) {
           uData[coreConstant.contact.PHONE] = req.body.data;
           pData["phoneVerified"] = true;
