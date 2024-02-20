@@ -1,10 +1,12 @@
 import {
   CoreForm, FORM_IDS, FORM_VIEW_MODE, CoreSection, CoreBox, CoreTypographyBody1, CoreClasses
 } from "@wrappid/core";
-import { useSelector } from "react-redux";
+// eslint-disable-next-line etc/no-commented-out-code
+// import { useSelector } from "react-redux";
 
 export default function SettingsContact() {
-  const personId = useSelector(state => state?.profile?.basic?.id);
+  // eslint-disable-next-line etc/no-commented-out-code
+  // const personId = useSelector(state => state?.profile?.basic?.id);
 
   return (
     <>
