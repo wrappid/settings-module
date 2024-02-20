@@ -1,17 +1,11 @@
 /* eslint-disable no-unused-vars */
-const {
-  communicate,
-  configProvider,
-  coreConstant,
-  databaseActions,
-  databaseProvider,
-} = require("@wrappid/service-core");
+import { communicate, configProvider, coreConstant, databaseActions, databaseProvider } from "@wrappid/service-core";
 
-const moment = require("moment/moment");
+import moment from "moment/moment";
 
-const getUserSettingsFunc = async (req, res) => {
+export const getUserSettingsFunc = async (req:any, res: any) => {
   try {
-    let  data = await databaseActions.findAll("application", "UserSettings", {
+    const  data = await databaseActions.findAll("application", "UserSettings", {
       where: {
         userId: req.user.userId,
       },
@@ -24,35 +18,18 @@ const getUserSettingsFunc = async (req, res) => {
   }
 };
 
-const getSettingMetaFunc = async (req, res) => {
+
+
+
+export const postAddContactFunc = async (req:any, res:any) => {
   try {
-    let data = await databaseActions.findAll("application", "SettingMeta", {});
-    if (data.length > 1) {
-      console.log("SettingMeta fetched successfully");
-      return {
-        status: 200, message: "SettingMeta fetched successfully", data
-      };
-      //   res
-      //     .status(200)
-      //     .json({ data: data, message: "SettingMeta fetched successfully" });
-    }
-  } catch (err) {
-    console.log(err);
-    throw err;
-  }
-};
-
-
-
-const postAddContactFunc = async (req, res) => {
-  try {
-    let person = await databaseActions.findOne("application","Persons",{
+    const person = await databaseActions.findOne("application","Persons",{
       where: {
         userId: req.user.userId
       }
     });
-    let personId = person.id;
-    let exists = await databaseActions.findOne("application","PersonContacts",{
+    const personId = person.id;
+    const exists = await databaseActions.findOne("application","PersonContacts",{
       where: {
         data: req.body.data.toString(),
         _status: coreConstant.entityStatus.ACTIVE,
@@ -64,7 +41,7 @@ const postAddContactFunc = async (req, res) => {
       return{status: 500, message: "Contact already exists"};
       
     } else {
-      let createdContact = await databaseActions.create("application","PersonContacts",{
+      const createdContact = await databaseActions.create("application","PersonContacts",{
         ...req.body,
         type: isNaN(req.body.data)
           ? coreConstant.contact.EMAIL
@@ -87,15 +64,15 @@ const postAddContactFunc = async (req, res) => {
   }
 };
 
-const putDeleteContactFunc = async (req, res) => {
+export const putDeleteContactFunc = async (req:any, res:any) => {
   try {
-    let contact = await databaseActions.findByPk("application","PersonContacts",req.params.id);
+    const contact = await databaseActions.findByPk("application","PersonContacts",req.params.id);
     if (contact.primaryFlag) {
       console.log("Can not delete primary mail");
       return {status:500 ,message: "Can not delete primary contact. Change primary then try again" };
       
     }
-    let [nrows, rows] = await databaseActions.update("application","PersonContacts",
+    const [nrows, rows] = await databaseActions.update("application","PersonContacts",
       {
         isActive: false,
         _status: coreConstant.entityStatus.DELETED,
@@ -117,16 +94,16 @@ const putDeleteContactFunc = async (req, res) => {
   }
 };
 
-const getPrimaryContactFunc = async (req, res) => {
+export const getPrimaryContactFunc = async (req:any, res:any) => {
   try {
-    let person = await databaseActions.findOne("application","Persons",{
+    const person = await databaseActions.findOne("application","Persons",{
       where: {
         userId: req.user.userId
       }
     });
-    let personId = person.id;
-    let contactType = req.params.contactType;
-    let personContacts = await databaseActions.findAll("application","PersonContacts",{
+    const personId = person.id;
+    const contactType = req.params.contactType;
+    const personContacts = await databaseActions.findAll("application","PersonContacts",{
       where: {
         personId: personId,
         type: contactType,
@@ -151,10 +128,10 @@ const getPrimaryContactFunc = async (req, res) => {
   }
 };
 
-const putChangePrimaryContactFunc = async (req, res) => {
+export const putChangePrimaryContactFunc = async (req:any, res:any) => {
   try {
-    let personId = req.user.personId;
-    let existingContact = await databaseActions.findOne("application","PersonContacts",{
+    const personId = req.user.personId;
+    const existingContact = await databaseActions.findOne("application","PersonContacts",{
       where: {
         type: req.query.type,
         data: req.body.data,
@@ -181,7 +158,7 @@ const putChangePrimaryContactFunc = async (req, res) => {
     // res.status(500).json({ message: "Please add other email" });
     }
     else {
-      let result = await databaseProvider.application.sequelize.transaction(async (t) => {
+      const result = await databaseProvider.application.sequelize.transaction(async (t:any) => {
         await databaseActions.update("application","PersonContacts",
           { primaryFlag: false },
           {
@@ -213,8 +190,8 @@ const putChangePrimaryContactFunc = async (req, res) => {
           req.body.data
         );
 
-        let uData = {};
-        let pData = {};
+        const uData:any = {};
+        const pData:any = {};
         if (req.query.type == coreConstant.contact.PHONE) {
           uData[coreConstant.contact.PHONE] = req.body.data;
           pData["phoneVerified"] = true;
@@ -262,4 +239,3 @@ const putChangePrimaryContactFunc = async (req, res) => {
   }
 };
 
-module.exports = { getUserSettingsFunc, getSettingMetaFunc, postAddContactFunc, putDeleteContactFunc, getPrimaryContactFunc, putChangePrimaryContactFunc };
