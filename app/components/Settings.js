@@ -1,4 +1,4 @@
-import { CoreCustomTabs } from "@wrappid/core";
+import { AppContainerLayout, CoreCustomTabs, CoreLayoutItem } from "@wrappid/core";
 
 export default function Settings() {
   const tabsContent = [
@@ -24,5 +24,12 @@ export default function Settings() {
     },  
   ];
 
-  return <CoreCustomTabs tabsContent={tabsContent} />;
+  return (
+    <>
+      <CoreLayoutItem id={AppContainerLayout.PLACEHOLDER.CONTENT}>
+        <CoreCustomTabs tabsContent={tabsContent} />
+      </CoreLayoutItem>
+    </>
+  );
+  
 }
