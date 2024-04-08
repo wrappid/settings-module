@@ -108,7 +108,7 @@ export default function SettingsAccount() {
           <CoreContainedButton
             disabled
             label="Delete Account"
-            OnClick={OnDeleteAccount}
+            onClick={OnDeleteAccount}
           />
         </CoreBox>
       </CoreSection>

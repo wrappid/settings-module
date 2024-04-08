@@ -27,7 +27,7 @@ export default function SettingsAppearance() {
         {allThemes?.map((theme) => (
           <CoreBox
             key={theme.id}
-            OnClick={() => {
+            onClick={() => {
               changeUserTheme(theme.id);
             }}
             style={{ marginLeft: 16 }}
