@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { communicate, configProvider, coreConstant, databaseActions, databaseProvider } from "@wrappid/service-core";
+import { communicate,  coreConstant, databaseActions, databaseProvider } from "@wrappid/service-core";
 
 import moment from "moment/moment";
 
