@@ -1,3 +1,3 @@
-import * as yup from "yup";
+import {object} from "yup";
 
-export const changePrimaryContact = { data: yup.object().required() };
+export const changePrimaryContact = object ({ data: object().required() });
