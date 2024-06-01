@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.5](https://https//github.com/wrappid/wrappid-module/compare/v0.0.4...v0.0.5) (2024-06-01)
+
+
+### Features
+
+* :wrench: validation schama changes ([bf49d5d](https://https//github.com/wrappid/wrappid-module/commit/bf49d5d02bf912a30944510200a6a4179182a3b8)), closes [#26](https://https//github.com/wrappid/wrappid-module/issues/26)
+
 ### [0.0.4](https://https//github.com/wrappid/wrappid-module/compare/v0.0.3...v0.0.4) (2024-05-06)
 
 
