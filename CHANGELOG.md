@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.6](https://https//github.com/wrappid/wrappid-module/compare/v0.0.5...v0.0.6) (2024-07-03)
+
+
+### Bug Fixes
+
+* **core:** :lipstick: ui improvements ([30cc702](https://https//github.com/wrappid/wrappid-module/commit/30cc702f33265732a545ba6d7bbcbda4e6f77cff)), closes [#29](https://https//github.com/wrappid/wrappid-module/issues/29)
+
 ### [0.0.5](https://https//github.com/wrappid/wrappid-module/compare/v0.0.4...v0.0.5) (2024-06-01)
 
 
