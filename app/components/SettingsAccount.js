@@ -8,11 +8,11 @@ import {
   FORM_VIEW_MODE,
   CoreContainedButton,
   CoreBox,
-  CoreSection,
   CoreClasses
 } from "@wrappid/core";
 import { useDispatch, useSelector } from "react-redux";
 
+import CustomSectionContent from "./CustomSectionContent";
 export default function SettingsAccount() {
   const dispatch = useDispatch();
   const contactInfo = useSelector((state) => state?.profile?.contact);
@@ -63,7 +63,7 @@ export default function SettingsAccount() {
   console.log("CONTACT INFO", contactInfo);
   return (
     <>
-      <CoreSection heading="Primary Phone" styleClasses={[CoreClasses.COLOR.TEXT_SECONDARY_DARK]}>
+      <CustomSectionContent styleClasses={[CoreClasses.COLOR.TEXT_SECONDARY_DARK]}>
         <CoreForm
           formId={FORM_IDS.__CHANGE_PRIMARY_PHONE}
           mode={FORM_VIEW_MODE}
@@ -73,9 +73,9 @@ export default function SettingsAccount() {
             verified: contactInfo?.phoneVerified,
           }}
         />
-      </CoreSection>
+      </CustomSectionContent>
 
-      <CoreSection heading="Primary Email" styleClasses={[CoreClasses.COLOR.TEXT_SECONDARY_DARK]}>
+      <CustomSectionContent styleClasses={[CoreClasses.COLOR.TEXT_SECONDARY_DARK]}>
         <CoreForm
           styleClasses={[CoreClasses.COLOR.TEXT_SECONDARY_DARK]}
           allowDelete={false}
@@ -86,10 +86,9 @@ export default function SettingsAccount() {
             verified: contactInfo?.emailVerified,
           }}
         />
-      </CoreSection>
+      </CustomSectionContent>
 
-      <CoreSection
-        heading="Delete Account"
+      <CustomSectionContent
         styleClasses={[CoreClasses.BG.BG_SECONDARY_LIGHT, CoreClasses.COLOR.TEXT_SECONDARY_DARK]}
 
       >
@@ -106,12 +105,11 @@ export default function SettingsAccount() {
           styleClasses={[CoreClasses.ALIGNMENT.JUSTIFY_CONTENT_FLEX_END, CoreClasses.MARGIN.MT2]}
         >
           <CoreContainedButton
-            disabled
             label="Delete Account"
             onClick={OnDeleteAccount}
           />
         </CoreBox>
-      </CoreSection>
+      </CustomSectionContent>
     </>
   );
 }

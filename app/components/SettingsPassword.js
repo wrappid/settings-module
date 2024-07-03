@@ -1,9 +1,11 @@
 import * as React from "react";
 
 import {
-  coreUseNavigate, CoreDialogContext, CoreForm, FORM_EDIT_MODE, FORM_IDS, CoreSection, CoreClasses 
+  coreUseNavigate, CoreDialogContext, CoreForm, FORM_EDIT_MODE, FORM_IDS, CoreClasses 
 } from "@wrappid/core";
 import { useDispatch, useSelector } from "react-redux";
+
+import CustomSectionContent from "./CustomSectionContent";
 
 export default function SettingsPassword() {
   const navigate = coreUseNavigate();
@@ -30,13 +32,14 @@ export default function SettingsPassword() {
   }, [changePasswordSuccess]);
 
   return (
-    <CoreSection heading="Change Password" styleClasses={[CoreClasses.COLOR.TEXT_SECONDARY_DARK]}>
+    <CustomSectionContent styleClasses={[CoreClasses.COLOR.TEXT_SECONDARY_DARK]}>
       <CoreForm
+        styleClasses={[CoreClasses.COLOR.TEXT_SECONDARY_DARK]}
         apiMode={"create"}
         onMountRead={false}
         formId={FORM_IDS.__CHANGE_PASSWORD}
         mode={FORM_EDIT_MODE}
       />
-    </CoreSection>
+    </CustomSectionContent>
   );
 }
