@@ -1,6 +1,6 @@
 import * as yup from "yup";
 
-const emailOrPhone:any = yup
+const emailOrPhone: any = yup
   .string()
   .matches(/^([0-9]{10}|[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+)$/);
 
@@ -14,12 +14,7 @@ const postAddContact = {
   body: yup
     .object({
       data: emailOrPhone.required(),
-    })
-    .noUnknown()
-    .strict(),
-  type: yup
-    .object({
-      id: yup.mixed().required(),
+      type: yup.mixed().notRequired(),
     })
     .noUnknown()
     .strict(),
@@ -39,8 +34,8 @@ const putChangePrimaryContact = {
   }).noUnknown().strict(),
 };
 
-export { 
-  getUserSettings, 
+export {
+  getUserSettings,
   postAddContact,
   putChangePrimaryContact
 };

@@ -1,8 +1,9 @@
 import { CoreMiddlewaresRegistry } from "@wrappid/service-core";
 import * as settingsController from "./controllers/settings.controller";
 import {
-  getUserSettings, 
-  putChangePrimaryContact
+  getUserSettings,
+  putChangePrimaryContact,
+  postAddContact
 } from "./validations/settings.validation";
 
 
@@ -11,10 +12,11 @@ const controllersRegistry = {
     CoreMiddlewaresRegistry.validation(getUserSettings),
     settingsController.getUserSettings,
   ],
- 
+
   putDeleteContact: [settingsController.putDeleteContact],
   getPrimaryContact: [settingsController.getPrimaryContact],
-  putChangePrimaryContact: [CoreMiddlewaresRegistry.validation(putChangePrimaryContact),settingsController.putChangePrimaryContact]
+  putChangePrimaryContact: [CoreMiddlewaresRegistry.validation(putChangePrimaryContact), settingsController.putChangePrimaryContact],
+  postAddContact: [CoreMiddlewaresRegistry.validation(postAddContact), settingsController.postAddContact]
 
 };
 //
