@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.7](https://https//github.com/wrappid/wrappid-module/compare/v0.0.6...v0.0.7) (2024-07-08)
+
+
+### Bug Fixes
+
+* **core:** :bug: otp send ([9374bf2](https://https//github.com/wrappid/wrappid-module/commit/9374bf2c506de5bad99e5c5539c5a107a688d54d)), closes [#29](https://https//github.com/wrappid/wrappid-module/issues/29)
+
 ### [0.0.6](https://https//github.com/wrappid/wrappid-module/compare/v0.0.5...v0.0.6) (2024-07-03)
 
 
