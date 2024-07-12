@@ -3,7 +3,6 @@ import * as settingsController from "./controllers/settings.controller";
 import {
   getUserSettings,
   putChangePrimaryContact,
-  postAddContact
 } from "./validations/settings.validation";
 
 
