@@ -16,7 +16,7 @@ const controllersRegistry = {
   putDeleteContact: [settingsController.putDeleteContact],
   getPrimaryContact: [settingsController.getPrimaryContact],
   putChangePrimaryContact: [CoreMiddlewaresRegistry.validation(putChangePrimaryContact), settingsController.putChangePrimaryContact],
-  postAddContact: [CoreMiddlewaresRegistry.validation(postAddContact), settingsController.postAddContact]
+  postAddContact: [settingsController.postAddContact]
 
 };
 //
