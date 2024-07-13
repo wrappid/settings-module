@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.9](https://https//github.com/wrappid/wrappid-module/compare/v0.0.8...v0.0.9) (2024-07-13)
+
+
+### Features
+
+* **config:** :sparkles: settings tab from database ([b14becf](https://https//github.com/wrappid/wrappid-module/commit/b14becf7e8208761f5b9dc6467fa0bd367b99e23)), closes [#35](https://https//github.com/wrappid/wrappid-module/issues/35)
+
 ### [0.0.8](https://https//github.com/wrappid/wrappid-module/compare/v0.0.7...v0.0.8) (2024-07-13)
 
 
