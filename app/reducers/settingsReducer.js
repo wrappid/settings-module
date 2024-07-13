@@ -8,7 +8,8 @@ import {
   SETTINGS_MENU_SUCCESS,
   USER_SETTINGS_UPDATE_SUCCESS,
   OTP_VERIFY_SUCCESS,
-  OTP_VERIFY_ERROR
+  OTP_VERIFY_ERROR,
+  GET_SETTING_META_SUCCESS
 } from "../types/settingsTypes";
 
 const initState = {
@@ -18,6 +19,7 @@ const initState = {
   getUserSettingsSuccess: false,
   menu                  : [],
   reload                : false,
+  settingsMeta          : null,
   userSettings          : null,
   verifyOtpSuccess      : false,
 };
@@ -28,6 +30,12 @@ const settingsReducer = (state = initState, action) => {
       return {
         ...state,
         menu: action.payload.data,
+      };
+
+    case GET_SETTING_META_SUCCESS:
+      return {
+        ...state,
+        settingsMeta: action.payload.data,
       };
 
     case GET_USER_SETTINGS_LOADING:
