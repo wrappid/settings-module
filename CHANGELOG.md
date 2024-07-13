@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.8](https://https//github.com/wrappid/wrappid-module/compare/v0.0.7...v0.0.8) (2024-07-13)
+
+
+### Features
+
+* **core:** :sparkles: themes manager as appearance ([1271e8b](https://https//github.com/wrappid/wrappid-module/commit/1271e8bdb975e93e5798ee62396c39934808bd40)), closes [#32](https://https//github.com/wrappid/wrappid-module/issues/32)
+
+
+### Bug Fixes
+
+* **core:** wrong validation removed ([993d5ee](https://https//github.com/wrappid/wrappid-module/commit/993d5eed117ed6e5a0c4a6120192db8b0d5a1ace)), closes [#29](https://https//github.com/wrappid/wrappid-module/issues/29)
+
 ### [0.0.7](https://https//github.com/wrappid/wrappid-module/compare/v0.0.6...v0.0.7) (2024-07-08)
 
 

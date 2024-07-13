@@ -1,6 +1,6 @@
 {
   "name": "settings-module",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "This is settings module Wrappid Project.",
   "main": "index.js",
   "scripts": {
