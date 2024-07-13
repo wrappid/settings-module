@@ -1,4 +1,6 @@
 import {
+  //eslint-disable-next-line etc/no-commented-out-code
+/*
   CoreBox,
   CoreForm,
   CoreFormControlLabel,
@@ -6,15 +8,15 @@ import {
   CoreH5,
   CoreSection,
   CoreSwitch,
-  CoreTypographyBody1,
   FORM_EDIT_MODE,
-  FORM_IDS
+  FORM_IDS */
+  CoreTypographyBody1
 } from "@wrappid/core";
 
 export default function SettingsNotification() {
   return (
     <>
-      <CoreSection heading="Email Notifications">
+      {/* <CoreSection heading="Email Notifications">
         <CoreTypographyBody1>
           Enter email addresses that will receive email notifications regarding
           payments, settlements, reports, webhooks, etc.
@@ -67,7 +69,10 @@ export default function SettingsNotification() {
           formId={FORM_IDS.__UPDATE_WHATSAPP_NOTIFICATIONS}
           mode={FORM_EDIT_MODE}
         />
-      </CoreSection>
+      </CoreSection> */}
+      <CoreTypographyBody1>
+        Comming Soon...
+      </CoreTypographyBody1>
     </>
   );
 }
