@@ -58,7 +58,7 @@ export default function Settings() {
   return (
     <>
       <CoreLayoutItem id={AppContainerLayout.PLACEHOLDER.CONTENT}>
-        <CoreCustomTabs tabsContent={tabsContent} />
+        <CoreCustomTabs tabsContent={tabsContent} variant="scrollable"/>
       </CoreLayoutItem>
     </>
   );
