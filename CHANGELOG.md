@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.10](https://https//github.com/wrappid/wrappid-module/compare/v0.0.9...v0.0.10) (2024-07-19)
+
+
+### Features
+
+* **core:** :sparkles: appearance themeSelector added ([7725f1b](https://https//github.com/wrappid/wrappid-module/commit/7725f1bfb5c94a795de73028263eaec265773087)), closes [#35](https://https//github.com/wrappid/wrappid-module/issues/35)
+
 ### [0.0.9](https://https//github.com/wrappid/wrappid-module/compare/v0.0.8...v0.0.9) (2024-07-13)
 
 
