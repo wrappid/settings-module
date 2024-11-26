@@ -102,7 +102,7 @@ export default function SettingsAccount() {
         </CoreTypographyCaption>
 
         <CoreBox
-          styleClasses={[CoreClasses.ALIGNMENT.JUSTIFY_CONTENT_FLEX_END, CoreClasses.MARGIN.MT2]}
+          styleClasses={[CoreClasses.DISPLAY.FLEX, CoreClasses.ALIGNMENT.JUSTIFY_CONTENT_FLEX_END, CoreClasses.MARGIN.MT2]}
         >
           <CoreContainedButton
             label="Delete Account"
