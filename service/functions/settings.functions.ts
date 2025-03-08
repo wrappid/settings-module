@@ -1,13 +1,13 @@
 /* eslint-disable no-unused-vars */
-import { communicate,  coreConstant, databaseActions, databaseProvider } from "@wrappid/service-core";
+import { communicate, coreConstant, databaseActions, databaseProvider } from "@wrappid/service-core";
 
 import moment from "moment/moment";
 
-export const getUserSettingsFunc = async (req:any, res: any) => {
+export const getUserSettingsFunc = async (req: any, res: any) => {
   try {
-    const  data = await databaseActions.findAll("application", "UserSettings", {
+    const data = await databaseActions.findAll("application", "UserSettings", {
       where: {
-        userId: req.user.userId,
+        userId: req.user.userID,
       },
     });
     return { status: 200, message: "User Setting  fetched", data };
@@ -21,15 +21,15 @@ export const getUserSettingsFunc = async (req:any, res: any) => {
 
 
 
-export const postAddContactFunc = async (req:any, res:any) => {
+export const postAddContactFunc = async (req: any, res: any) => {
   try {
-    const person = await databaseActions.findOne("application","Persons",{
+    const person = await databaseActions.findOne("application", "Persons", {
       where: {
-        userId: req.user.userId
+        userId: req.user.userID
       }
     });
     const personId = person.id;
-    const exists = await databaseActions.findOne("application","PersonContacts",{
+    const exists = await databaseActions.findOne("application", "PersonContacts", {
       where: {
         data: req.body.data.toString(),
         _status: coreConstant.entityStatus.ACTIVE,
@@ -38,10 +38,10 @@ export const postAddContactFunc = async (req:any, res:any) => {
     });
     if (exists) {
       console.log("Contact already exists", exists.id);
-      return{status: 500, message: "Contact already exists"};
-      
+      return { status: 500, message: "Contact already exists" };
+
     } else {
-      const createdContact = await databaseActions.create("application","PersonContacts",{
+      const createdContact = await databaseActions.create("application", "PersonContacts", {
         ...req.body,
         type: isNaN(req.body.data)
           ? coreConstant.contact.EMAIL
@@ -55,29 +55,29 @@ export const postAddContactFunc = async (req:any, res:any) => {
         ", Person Id: ",
         personId
       );
-    
-      return{status: 200, message: "Contact info created successfully"};
+
+      return { status: 200, message: "Contact info created successfully" };
     }
   } catch (err) {
     console.error(err);
-    return {status:500,  message: "Contact info create error"};
+    return { status: 500, message: "Contact info create error" };
   }
 };
 
-export const putDeleteContactFunc = async (req:any, res:any) => {
+export const putDeleteContactFunc = async (req: any, res: any) => {
   try {
-    const contact = await databaseActions.findByPk("application","PersonContacts",req.params.id);
+    const contact = await databaseActions.findByPk("application", "PersonContacts", req.params.id);
     if (contact.primaryFlag) {
       console.log("Can not delete primary mail");
-      return {status:500 ,message: "Can not delete primary contact. Change primary then try again" };
-      
+      return { status: 500, message: "Can not delete primary contact. Change primary then try again" };
+
     }
-    const [nrows, rows] = await databaseActions.update("application","PersonContacts",
+    const [nrows, rows] = await databaseActions.update("application", "PersonContacts",
       {
         isActive: false,
         _status: coreConstant.entityStatus.DELETED,
         deletedAt: moment(),
-        deletedBy: req.user.userId,
+        deletedBy: req.user.userID,
       },
       {
         where: {
@@ -86,24 +86,24 @@ export const putDeleteContactFunc = async (req:any, res:any) => {
       }
     );
     console.log("Person contact deleted, id:", req.params.id);
-    return {status: 200 ,message: "Contact info deleted successfully" };
-    
+    return { status: 200, message: "Contact info deleted successfully" };
+
   } catch (err) {
     console.error(err);
-    return {status:500 ,message:"Contact info delete error" };
+    return { status: 500, message: "Contact info delete error" };
   }
 };
 
-export const getPrimaryContactFunc = async (req:any, res:any) => {
+export const getPrimaryContactFunc = async (req: any, res: any) => {
   try {
-    const person = await databaseActions.findOne("application","Persons",{
+    const person = await databaseActions.findOne("application", "Persons", {
       where: {
-        userId: req.user.userId
+        userId: req.user.userID
       }
     });
     const personId = person.id;
     const contactType = req.params.contactType;
-    const personContacts = await databaseActions.findAll("application","PersonContacts",{
+    const personContacts = await databaseActions.findAll("application", "PersonContacts", {
       where: {
         personId: personId,
         type: contactType,
@@ -114,52 +114,54 @@ export const getPrimaryContactFunc = async (req:any, res:any) => {
     if (personContacts && personContacts.length > 0) {
       // send 200
       console.log("Contact info fetched successfully");
-      return {status:200, message: "Contact info fetched successfully",data: {
-        rows: personContacts
-      },};
-      
+      return {
+        status: 200, message: "Contact info fetched successfully", data: {
+          rows: personContacts
+        },
+      };
+
     } else {
       // send 204
-      return {status: 204, message: `No ${contactType}(s) found.`};
+      return { status: 204, message: `No ${contactType}(s) found.` };
     }
   } catch (err) {
     console.error(err);
-    return {status: 500, message: "Contact info fetch error", error: err };
+    return { status: 500, message: "Contact info fetch error", error: err };
   }
 };
 
-export const putChangePrimaryContactFunc = async (req:any, res:any) => {
+export const putChangePrimaryContactFunc = async (req: any, res: any) => {
   try {
     const personId = req.user.personId;
-    const existingContact = await databaseActions.findOne("application","PersonContacts",{
+    const existingContact = await databaseActions.findOne("application", "PersonContacts", {
       where: {
         type: req.query.type,
         data: req.body.data,
         primaryFlag: true,
       },
 
-     
+
     });
     if (existingContact) {
       console.log(
         "Already a primary contact for other person: ",
         existingContact.personId
       );
-      return {status:500, message: "Already a primary contact for other user" };
+      return { status: 500, message: "Already a primary contact for other user" };
       // res
       //   .status(500)
       //   .json({ message: "Already a primary contact for other user" });
     }
-    
-  
+
+
     else if (req.user.email == req.body.data) {
       console.log("Please add other email");
-      return {status:500, message: "Please add other email" };
-    // res.status(500).json({ message: "Please add other email" });
+      return { status: 500, message: "Please add other email" };
+      // res.status(500).json({ message: "Please add other email" });
     }
     else {
-      const result = await databaseProvider.application.sequelize.transaction(async (t:any) => {
-        await databaseActions.update("application","PersonContacts",
+      const result = await databaseProvider.application.sequelize.transaction(async (t: any) => {
+        await databaseActions.update("application", "PersonContacts",
           { primaryFlag: false },
           {
             where: {
@@ -172,7 +174,7 @@ export const putChangePrimaryContactFunc = async (req:any, res:any) => {
           }
         );
         console.log("All contacts made non primary");
-        await databaseActions.update("application","PersonContacts",
+        await databaseActions.update("application", "PersonContacts",
           { primaryFlag: true },
           {
             where: {
@@ -190,8 +192,8 @@ export const putChangePrimaryContactFunc = async (req:any, res:any) => {
           req.body.data
         );
 
-        const uData:any = {};
-        const pData:any = {};
+        const uData: any = {};
+        const pData: any = {};
         if (req.query.type == coreConstant.contact.PHONE) {
           uData[coreConstant.contact.PHONE] = req.body.data;
           pData["phoneVerified"] = true;
@@ -207,18 +209,18 @@ export const putChangePrimaryContactFunc = async (req:any, res:any) => {
           "P data:",
           pData,
           "id:",
-          req.user.userId
+          req.user.userID
         );
-        await databaseActions.update("application","Users",uData, {
+        await databaseActions.update("application", "Users", uData, {
           where: {
-            id: req.user.userId,
+            id: req.user.userID,
           }
         },
         {
           transaction: t
         }
         );
-        await databaseActions.update("application","Persons",pData, {
+        await databaseActions.update("application", "Persons", pData, {
           where: {
             id: personId,
           }
@@ -229,12 +231,12 @@ export const putChangePrimaryContactFunc = async (req:any, res:any) => {
         console.log("person table updated");
       });
       console.log("Primary contact updated");
-      return {status:200, message: "Primary contact updated" };
+      return { status: 200, message: "Primary contact updated" };
       // res.status(200).json({ message: "Primary contact updated" });
     }
   } catch (err) {
     console.log(err);
-    return {status:500 ,message: "Error to fetch Contacts data"  };
+    return { status: 500, message: "Error to fetch Contacts data" };
     // res.status(500).json({ message: "Error to fetch Contacts data" });
   }
 };
