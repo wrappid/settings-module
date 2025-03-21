@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.13](https://https//github.com/wrappid/wrappid-module/compare/v0.0.12...v0.0.13) (2025-03-21)
+
+
+### Bug Fixes
+
+* **config:** :pushpin: correct incompatible dependencies in package.json ([976dd64](https://https//github.com/wrappid/wrappid-module/commit/976dd64feb9798deb9feaae78367085109e4f94d)), closes [#39](https://https//github.com/wrappid/wrappid-module/issues/39)
+
 ### [0.0.12](https://https//github.com/wrappid/wrappid-module/compare/v0.0.11...v0.0.12) (2024-12-09)
 
 ### [0.0.11](https://https//github.com/wrappid/wrappid-module/compare/v0.0.10...v0.0.11) (2024-12-02)
